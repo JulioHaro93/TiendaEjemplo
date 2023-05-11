@@ -52,3 +52,14 @@ C:\Users\BlueDotMx-JS\Documents\CSharp\APPTienda\APPTienda\obj\Debug\net7.0\refi
 C:\Users\BlueDotMx-JS\Documents\CSharp\APPTienda\APPTienda\obj\Debug\net7.0\APPTienda.pdb
 C:\Users\BlueDotMx-JS\Documents\CSharp\APPTienda\APPTienda\obj\Debug\net7.0\APPTienda.genruntimeconfig.cache
 C:\Users\BlueDotMx-JS\Documents\CSharp\APPTienda\APPTienda\obj\Debug\net7.0\ref\APPTienda.dll
+C:\Users\BlueDotMx-JS\Documents\CSharp\APPTienda\APPTienda\bin\Debug\net7.0\Web.config
+C:\Users\BlueDotMx-JS\Documents\CSharp\APPTienda\APPTienda\bin\Debug\net7.0\Humanizer.dll
+C:\Users\BlueDotMx-JS\Documents\CSharp\APPTienda\APPTienda\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\BlueDotMx-JS\Documents\CSharp\APPTienda\APPTienda\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\BlueDotMx-JS\Documents\CSharp\APPTienda\APPTienda\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\BlueDotMx-JS\Documents\CSharp\APPTienda\APPTienda\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\BlueDotMx-JS\Documents\CSharp\APPTienda\APPTienda\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\BlueDotMx-JS\Documents\CSharp\APPTienda\APPTienda\bin\Debug\net7.0\Mono.TextTemplating.dll
+C:\Users\BlueDotMx-JS\Documents\CSharp\APPTienda\APPTienda\bin\Debug\net7.0\System.CodeDom.dll
+C:\Users\BlueDotMx-JS\Documents\CSharp\APPTienda\APPTienda\bin\Debug\net7.0\MySqlConnector.dll
+C:\Users\BlueDotMx-JS\Documents\CSharp\APPTienda\APPTienda\bin\Debug\net7.0\Pomelo.EntityFrameworkCore.MySql.dll

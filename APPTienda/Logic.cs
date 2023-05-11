@@ -6,6 +6,7 @@ namespace APPTienda
 {
     public class Logic
     {
+        /* 
         public MySqlConnection getConnection()
         {
             MySqlConnection cn = new MySqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["ConexionSQL"].ConnectionString.ToString());
@@ -44,5 +45,6 @@ namespace APPTienda
 
             return valid;
         }
+    }*/
     }
 }

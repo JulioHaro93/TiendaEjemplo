@@ -7,10 +7,11 @@ namespace APPTienda.Models
         [Key]
         public uint Id_Categoria { get; set; }
         public uint Category_Num { get; set; }
-        public string Ticket_Num { get; set; }
 
-        [Required]
+        [RegularExpression(@"[0-9].[0-9]")]
+        public string Ticket_Num { get; set; }
         [Display(Name = "Nombre de la Categoría")]
+        [Required(ErrorMessage ="El nombre es necesario")]
         public string Nombre { get; set; }
 
         List<SubCategoria> SubCategorias { get; set; }

@@ -11,6 +11,7 @@ namespace APPTienda.Models
         private uint? Inventario { get; set; }
         private string? NumMaterial { get; set; }
         private string? NombreProdcuto { get; set; }
+        [RegularExpression(@"[0-9].[0-9].[0-9].[0-9]")]
         private string? Categoria { get; set; }
         [ForeignKey("SubCategoria")]
         private uint?  Id_Subcategoria { get; set; }

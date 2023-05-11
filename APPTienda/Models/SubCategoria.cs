@@ -6,9 +6,12 @@ namespace APPTienda.Models
     
     public class SubCategoria
     {
+
         [Key]
-        private uint? Id_SubCategoria { get; set; }
+        private uint Id_SubCategoria { get; set; }
         private uint? SubCategoria_Num { get; set; }
+
+        [RegularExpression(@"[0-9].[0-9].[0-9]", ErrorMessage = "Ingrese una ticket de producto correcto")]
         [ForeignKey("Categoria")]
         private uint? Id_Categoria { get; set; }
         
