@@ -13,10 +13,10 @@ namespace APPTienda.Models
 
         [RegularExpression(@"[0-9].[0-9].[0-9]", ErrorMessage = "Ingrese una ticket de producto correcto")]
         [ForeignKey("Categoria")]
-        private uint? Id_Categoria { get; set; }
+        public uint? Id_Categoria { get; set; }
         
         [NotMapped]
-        private Categoria? Categoria { get; set; }
+        public Categoria? Categoria { get; set; }
 
         
         public SubCategoria() { }

@@ -6,13 +6,14 @@ namespace APPTienda.Models
     public class Articulo
     {
         [Key]
-        private uint? Sku { get; set; }
-        private uint? Atrticulo_Num { get; set; }
-        private uint? Inventario { get; set; }
-        private string? NumMaterial { get; set; }
-        private string? NombreProdcuto { get; set; }
+        public uint? Sku { get; set; }
+        public uint? Atrticulo_Num { get; set; }
+        public uint? Inventario { get; set; }
+        public string? NumMaterial { get; set; }
+        public string? NombreProdcuto { get; set; }
         [RegularExpression(@"[0-9].[0-9].[0-9].[0-9]")]
-        private string? Categoria { get; set; }
+        public string? Categoria { get; set; }
+
         [ForeignKey("SubCategoria")]
         private uint?  Id_Subcategoria { get; set; }
 

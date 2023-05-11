@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Connections;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-
+using System.Reflection.PortableExecutable;
 
 namespace APPTienda.Data
 {
@@ -20,17 +20,16 @@ namespace APPTienda.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Articulo>(eb =>
-            {
-                eb.HasNoKey();
+            modelBuilder.Entity<Articulo>(eb => {
+                object value = eb.HasKey(t => t.Sku);
             });
             modelBuilder.Entity<Categoria>(eb =>
             {
-                eb.HasNoKey();
+                object value = eb.HasKey(t => t.Id_Categoria);
             });
             modelBuilder.Entity<SubCategoria>(eb =>
             {
-                eb.HasNoKey();
+                object value = eb.HasKey(t => t.Id_Categoria);
             });
         }
 
