@@ -6,10 +6,10 @@
 
 <div class="row">
     <div class="col-4">
-        <h3>Lista de Categorías</h3>
+        <h3>Lista de SubCategorías</h3>
     </div>
     <div class="col-3">
-        <a asp-action="Crear" class="btn btn-primary form-control">Crear Categoría</a>
+        <a asp-action="Crear" class="btn btn-primary form-control">Crear SubCategoría</a>
     </div>
 </div>
 
@@ -19,8 +19,8 @@
         <table class="table table-striped border">
 
             <tr>
-                <th>Nombre de Categoría</th>
-                <th>Identificador de la categoría</th>
+                <th>Nombre de la SubCategoría</th>
+                <th>Identificador de la Subcategoría</th>
             </tr>
             @foreach (var subCategoria in Model)
             {
@@ -38,6 +38,6 @@
     }
     else
     {
-        <p>No Hay categorías</p>
+        <p>No Hay SubCategorías</p>
     }
 </div>

@@ -2,6 +2,8 @@
 using APPTienda.Models;
 using APPTienda.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace APPTienda.Controllers
 {
@@ -37,13 +39,36 @@ namespace APPTienda.Controllers
             {
                 List<Categoria> listaCategorias = _context.Categoria.ToList();
                 List<SubCategoria> listaSub = _context.SubCategoria.ToList();
+                List<SubCategoria> listaSubById = _context.SubCategoria
+                    .Where(t => t.Id_Categoria == subCategoria.Id_Categoria)
+                    .ToList();
 
-                var totalSubCat = listaSub.Count();
-                subCategoria.SubCategoria_Num = (uint?)(totalSubCat + 1);
-                //subCategoria.Ticket_Num = subCategoria.Categoria.Ticket_Num + "." + subCategoria.Ticket_Num.ToString();
 
+                //string substring = listaSub[listaSub.Count()-1].Ticket_Num;
+
+                subCategoria.SubCategoria_Num = (uint)(listaSubById.Count()+1);
+                subCategoria.Ticket_NumSub =  "1." + 
+                    subCategoria.Id_Categoria.ToString() + "."+
+                    subCategoria.SubCategoria_Num.ToString();
+
+
+                /*
+                
+                List<Categoria> listaNueva = new List<Categoria>();
+                Console.WriteLine(listaCategorias.Count());
+                for(int i =0;  i < listaCategorias.Count(); i++)
+                {
+                    if (listaCategorias[i].Id_Categoria == subCategoria.Id_Categoria)
+                    {
+                        listaNueva.Add(listaCategorias[i]);
+                    }
+                }int totalSubCat = (contador + 1);
+                Console.WriteLine(totalSubCat.ToString()); 
+                subCategoria.SubCategoria_Num= (uint) totalSubCat;
+                
                 for (int i = 0; i < listaCategorias.Count(); i++)
                 {
+                    Console.WriteLine(listaCategorias[i]);
                     if (listaCategorias[i].Id_Categoria == subCategoria.Id_Categoria)
                     {
                         subCategoria.Ticket_NumSub = listaCategorias[i].Ticket_Num.ToString() +"."+
@@ -51,7 +76,7 @@ namespace APPTienda.Controllers
                     }
                 }
 
-                for (int i = 0; i < totalSubCat; i++)
+                for (int i = 0; i < listaSub.Count(); i++)
                 {
                     if (subCategoria.Ticket_NumSub == listaSub[i].Ticket_Num)
                     {
@@ -59,7 +84,7 @@ namespace APPTienda.Controllers
                         subCategoria.Id_SubCategoria = listaSub[totalSubCat - 1].Id_SubCategoria + 1;
                         subCategoria.Ticket_NumSub = subCategoria.Categoria.Ticket_Num+ "." + subCategoria.SubCategoria_Num.ToString();
                     }
-                }
+                }*/
                 _context.SubCategoria.Add(subCategoria);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
@@ -70,5 +95,33 @@ namespace APPTienda.Controllers
                 return View();
             }
         }
+
+        [HttpGet]
+        [ValidateAntiForgeryToken]
+        public IActionResult Editar(int? id)
+        {
+            if( id == null)
+            {
+                return View();
+            }
+            else
+            {
+                CategoriaSubCategoriaViewModel categoriaSubCategorias = new CategoriaSubCategoriaViewModel();
+                categoriaSubCategorias.ListadeCategorias = _context.Categoria.Select(i => new SelectListItem
+                {
+                    Text = i.Nombre,
+                    Value = i.Id_Categoria.ToString()
+
+                });
+                categoriaSubCategorias.SubCategoria = _context.SubCategoria.FirstOrDefault(s => s.Id_SubCategoria == id);
+                if(categoriaSubCategorias == null)
+                {
+                    return View();
+                }
+                return View(categoriaSubCategorias);
+            }
+        }
+        
     }
 }
+
