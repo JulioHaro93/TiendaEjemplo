@@ -80,5 +80,22 @@ namespace APPTienda.Controllers
                 return View(categoria);
             }
         }
+        [HttpDelete]
+        public IActionResult Borrar(uint? id)
+        {
+
+            if(id == null)
+            {
+                var categoria = _context.Categoria.FirstOrDefault(c => c.Id_Categoria == id);
+                _context.Categoria.Remove(categoria);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                return View();
+            }
+        }
     }
+
 }
