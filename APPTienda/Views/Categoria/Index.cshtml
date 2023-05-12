@@ -20,12 +20,13 @@
 
             <tr>
                 <th>Nombre de Categoría</th>
-                <th></th>
+                <th>Identificador de la categoría</th>
              </tr>
              @foreach(var categoria in Model)
             {
                 <tr>
                     <td>@categoria.Nombre</td>
+                    <td>@categoria.Ticket_Num</td>
                     <td>
                         <a class="btn btn-primary txt-white" asp-action="Editar" asp-route-Id ="@categoria.Id_Categoria">Editar</a>
                         <a class="btn btn-primary txt-white" asp-action="Borrar" asp-route-Id="@categoria.Id_Categoria">Borrar</a>

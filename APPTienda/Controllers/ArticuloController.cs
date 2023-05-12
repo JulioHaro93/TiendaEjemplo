@@ -9,11 +9,11 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace APPTienda.Controllers
 {
-    public class CategoriaController : Controller
+    public class ArticuloController : Controller
     {
         public readonly TiendaDbContext _context;
 
-        public CategoriaController (TiendaDbContext contexto)
+        public ArticuloController (TiendaDbContext contexto)
         {
             _context = contexto;
         }
@@ -21,8 +21,8 @@ namespace APPTienda.Controllers
         [HttpGet]
         public IActionResult Index()
         { 
-            List<Categoria> listaCategorias = _context.Categoria.ToList();
-            return View(listaCategorias);
+            List<Articulo> listaArticulos = _context.Articulo.ToList();
+            return View(listaArticulos);
         }
 
         [HttpGet]

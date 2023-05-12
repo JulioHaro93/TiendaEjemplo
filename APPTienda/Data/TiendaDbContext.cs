@@ -29,7 +29,7 @@ namespace APPTienda.Data
             });
             modelBuilder.Entity<SubCategoria>(eb =>
             {
-                object value = eb.HasKey(t => t.Id_Categoria);
+                object value = eb.HasKey(t => t.Id_SubCategoria);
             });
         }
 
