@@ -16,8 +16,16 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\BlueDotMx-JS\Documents\CSharp\APPTienda\APPTienda
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/BlueDotMx-JS/Documents/CSharp/APPTienda/APPTienda/Views/Articulo/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXJ0aWN1bG9cQ3JlYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/BlueDotMx-JS/Documents/CSharp/APPTienda/APPTienda/Views/Articulo/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXJ0aWN1bG9cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/BlueDotMx-JS/Documents/CSharp/APPTienda/APPTienda/Views/Articulo/VerPorCategoria.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXJ0aWN1bG9cVmVyUG9yQ2F0ZWdvcmlhLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/BlueDotMx-JS/Documents/CSharp/APPTienda/APPTienda/Views/Categoria/Crear.cshtml]

@@ -1,11 +1,13 @@
 ﻿using APPTienda.Data;
 using APPTienda.Models;
+using APPTienda.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Formats.Asn1;
 using System.Linq;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace APPTienda.Controllers
 {
@@ -13,7 +15,7 @@ namespace APPTienda.Controllers
     {
         public readonly TiendaDbContext _context;
 
-        public ArticuloController (TiendaDbContext contexto)
+        public ArticuloController(TiendaDbContext contexto)
         {
             _context = contexto;
         }
@@ -28,30 +30,63 @@ namespace APPTienda.Controllers
         [HttpGet]
         public IActionResult Crear()
         {
-            return View();
+
+            SubCategoriaArticuloVM articuloSubCategorias = new SubCategoriaArticuloVM();
+            articuloSubCategorias.ListaSubCategorias = _context.SubCategoria.
+                Select(i => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem
+                {
+                    Text = i.Nombre,
+                    Value = i.Id_SubCategoria.ToString()
+                }).ToList();
+            articuloSubCategorias.ListaSub = _context.SubCategoria.ToList();
+
+            List<SelectListItem> items = articuloSubCategorias.ListaSub.ConvertAll(d =>
+            {
+                return new SelectListItem() { 
+                    Text = d.Nombre, Value = d.Id_SubCategoria.ToString() 
+                };
+            }).ToList();
+            
+            return View(articuloSubCategorias);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Crear(Categoria categoria)
+        public IActionResult Crear(Articulo articulo)
         {
             if (ModelState.IsValid) 
             {
-                List<Categoria> listaCategorias = _context.Categoria.ToList();
-                var totalCategorias = listaCategorias.Count();
+                /*List<Articulo> listaArticulos = _context.Articulo.ToList();
+                var totalCategorias = listaArticulos.Count();
 
-                categoria.Category_Num = (uint)(totalCategorias + 1);
-                categoria.Id_Categoria = (uint)(totalCategorias + 1);
-                categoria.Ticket_Num = "1."+categoria.Category_Num.ToString();
+                articulo.ArticuloNum= (uint)(totalCategorias + 1);
+                //articulo.Id_SubCategoria = (uint)(totalCategorias + 1);
+                articulo.Categoria = "1."+articulo.ArticuloNum.ToString();
                 for (int i = 0; i < totalCategorias; i++)
                 {
-                    if (listaCategorias[i].Ticket_Num == categoria.Ticket_Num)
+                    if (listaArticulos[i].Categoria == articulo.Categoria)
                     {
-                        categoria.Category_Num = listaCategorias[totalCategorias-1].Id_Categoria+1;
-                        categoria.Id_Categoria = listaCategorias[totalCategorias-1].Id_Categoria + 1;
-                        categoria.Ticket_Num = "1."+ categoria.Category_Num.ToString();
+                        articulo.ArticuloNum = listaArticulos[totalCategorias-1].Id_SubCategoria+1;
+                        //articulo.Id_SubCategoria = listaArticulos[totalCategorias-1].Id_SubCategoria + 1;
+                        articulo.Categoria = "1."+ articulo.ArticuloNum.ToString();
                     }
-                }
-                _context.Categoria.Add(categoria);
+                }*/
+                List<SubCategoria> listaSubCategorias = _context.SubCategoria.ToList();
+                List<Articulo> listaSub = _context.Articulo.ToList();
+                List<SubCategoria> listaSubById = _context.SubCategoria
+                    .Where(t => t.Id_Categoria == articulo.Id_SubCategoria)
+                    .ToList();
+
+
+                //string substring = listaSub[listaSub.Count()-1].Ticket_Num;
+
+                articulo.ArticuloNum = (uint)((int)listaSubById.Count() + 1);
+                articulo.Categoria =
+                    listaSubById[0].Ticket_NumSub.ToString() + "." +
+                    articulo.ArticuloNum.ToString();
+
+
+                _context.Articulo.Add(articulo);
                 _context.SaveChanges();
 
                 return RedirectToAction("Index");
@@ -94,12 +129,12 @@ namespace APPTienda.Controllers
         [HttpGet]
         public IActionResult Borrar(uint? id)
         {
-            var categoria = _context.Categoria.FirstOrDefault(c => c.Id_Categoria == id);
+            var articulo = _context.Articulo.FirstOrDefault(a => a.Sku == id);
 
-            if (categoria != null)
+            if (articulo != null)
             {
                 
-                _context.Categoria.Remove(categoria);
+                _context.Articulo.Remove(articulo);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
@@ -108,6 +143,24 @@ namespace APPTienda.Controllers
                 return View();
             }
         }
+
+        [HttpGet]
+        public IActionResult VerPorCategoria(Categoria categoria)
+        {
+            List<Articulo> articulos = _context.Articulo.Where(a =>
+                a.Categoria.Substring(0, 3).Equals(categoria.Ticket_Num)
+                ).ToList();
+            return View(articulos);
+        }
+
+        public IActionResult VerPorSubCategoria(SubCategoria subCategoria)
+        {
+            List<Articulo> articulos = _context.Articulo.Where(a =>
+                a.Categoria.Substring(0, 5).Equals(subCategoria.Ticket_NumSub)
+                ).ToList();
+            return View(articulos);
+        }
     }
+
 
 }

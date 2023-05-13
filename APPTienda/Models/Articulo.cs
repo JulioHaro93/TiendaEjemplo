@@ -7,29 +7,29 @@ namespace APPTienda.Models
     {
         [Key]
         public uint? Sku { get; set; }
-        public uint? Atrticulo_Num { get; set; }
+        public uint? ArticuloNum { get; set; }
         public uint? Inventario { get; set; }
         public string? NumMaterial { get; set; }
-        public string? NombreProdcuto { get; set; }
+        public string? NombreProducto { get; set; }
         [RegularExpression(@"[0-9].[0-9].[0-9].[0-9]")]
         public string? Categoria { get; set; }
 
         [ForeignKey("SubCategoria")]
-        private uint?  Id_Subcategoria { get; set; }
+        public uint?  Id_SubCategoria { get; set; }
 
         [NotMapped]
-        private SubCategoria? SubCategoria { get; set; }
+        public SubCategoria? SubCategoria { get; set; }
 
         public Articulo() { }
-        public Articulo (uint sku, uint atrticulo_Num, uint inventario, string numMaterial, string nombreProdcuto, string categoria, uint id_Subcategoria, SubCategoria subCategoria)
+        public Articulo (uint sku, uint articuloNum, uint inventario, string numMaterial, string nombreProducto, string categoria, uint id_SubCategoria, SubCategoria subCategoria)
         {
             Sku = sku;
-            Atrticulo_Num = atrticulo_Num;
+            ArticuloNum = articuloNum;
             Inventario = inventario;
             NumMaterial = numMaterial;
-            NombreProdcuto = nombreProdcuto;
+            NombreProducto = nombreProducto;
             Categoria = categoria;
-            Id_Subcategoria = id_Subcategoria;
+            Id_SubCategoria = id_SubCategoria;
             SubCategoria = subCategoria;
         }
     }

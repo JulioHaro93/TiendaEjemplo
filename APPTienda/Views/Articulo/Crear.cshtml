@@ -1,0 +1,77 @@
+﻿@model APPTienda.ViewModels.SubCategoriaArticuloVM
+@{
+    ViewData["Title"] = "Crear artículo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<h3 class="text-center">Crear uno nuevo artículo</h3>
+<form method="post" asp-action="Crear">
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-12 mt-4">
+            <div class="row">
+                <div class="col-4">
+                    <label asp-for="Articulo.NombreProducto"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Articulo.NombreProducto" class="form-control" />
+                    <span asp-validation-for="Articulo.NombreProducto" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-4">
+                    <label asp-for="Articulo.NumMaterial"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Articulo.NumMaterial" class="form-control" />
+                    <span asp-validation-for="Articulo.NumMaterial" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-4">
+                    <label asp-for="Articulo.Inventario"></label>
+                </div>
+                <div class="col-8">
+                    <input type="range" asp-for="Articulo.Inventario" steps="1" min="0" max="20" class="form-control" />
+                    <span asp-validation-for="Articulo.Inventario" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-4">
+                    <label asp-for="Articulo.SubCategoria"></label>
+                </div>
+                @*<div class="col-8">
+                    @Html.DropDownListFor(a => a.Articulo.Id_SubCategoria, Model.ListaSubCategorias, "--Lista de subcategorías--", new {@class = "form-control"})
+                    <span asp-validation-for="Articulo.Id_SubCategoria" class="text-danger"></span>
+                </div>*@
+                <div>
+                    <div class="col-8">
+                        <input type="range" asp-for="Articulo.Id_SubCategoria" steps="1" min="0" max="20" class="form-control" />
+                        <span asp-validation-for="Articulo.Inventario" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-3">
+            <a asp-action="Index">Volver a lista</a>
+        </div>
+        <div class="col-5 offset-4">
+            <button type="submit" class="btn btn-primary form-control">Crear</button>
+            &nbsp;
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
