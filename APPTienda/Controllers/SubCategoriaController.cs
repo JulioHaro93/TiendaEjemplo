@@ -4,6 +4,7 @@ using APPTienda.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace APPTienda.Controllers
 {
@@ -97,7 +98,6 @@ namespace APPTienda.Controllers
         }
 
         [HttpGet]
-        [ValidateAntiForgeryToken]
         public IActionResult Editar(int? id)
         {
             if( id == null)
@@ -116,12 +116,44 @@ namespace APPTienda.Controllers
                 categoriaSubCategorias.SubCategoria = _context.SubCategoria.FirstOrDefault(s => s.Id_SubCategoria == id);
                 if(categoriaSubCategorias == null)
                 {
-                    return View();
+                    return NotFound();
                 }
                 return View(categoriaSubCategorias);
             }
         }
-        
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Editar(CategoriaSubCategoriaViewModel subCategoriaVM)
+        {
+            if (subCategoriaVM.SubCategoria.Id_SubCategoria == 0)
+            {
+                return View(subCategoriaVM.SubCategoria);
+            }
+            else
+            {
+                _context.SubCategoria.Update(subCategoriaVM.SubCategoria);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
+        [HttpGet]
+        public IActionResult Borrar(int? id)
+        {
+            var subCategoria = _context.SubCategoria.FirstOrDefault(
+                s => s.Id_SubCategoria == id);
+            if (subCategoria == null) 
+            {
+                return NotFound();
+            }
+            else
+            {
+                _context.SubCategoria.Remove(subCategoria);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+        }
     }
 }
 

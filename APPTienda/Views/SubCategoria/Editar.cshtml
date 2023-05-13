@@ -20,6 +20,7 @@
                     <input asp-for="SubCategoria.Nombre" class="form-control" />
                     <span asp-validation-for="SubCategoria.Nombre" class="text-danger"></span>
                 </div>
+               
             </div>
             <div class="col-4">
                 <label asp-for="SubCategoria.Categoria"></label>
@@ -29,14 +30,28 @@
 
                 </div>
             </div>
+            <div class="col-4">
+                <label asp-for="SubCategoria.Ticket_NumSub"></label>
+            </div>
+            <div class="col-8">
+                <input asp-for="SubCategoria.Ticket_NumSub" class="form-control" />
+                @Html.DisplayFor( u=> u.SubCategoria.Ticket_NumSub)
+            </div>
+            <div class="col-4">
+            <label asp-for="SubCategoria.SubCategoria_Num"></label>
         </div>
-    </div>
+        <div class="col-8">
+            <input asp-for="SubCategoria.SubCategoria_Num" class="form-control" />
+            @Html.DisplayFor( u=> u.SubCategoria.SubCategoria_Num)
+        </div>
+        
+        </div>
     <div class="row mt-4">
         <div class="col-3">
             <a asp-action="Index">Volver a lista</a>
         </div>
         <div class="col-5 offset-4">
-            <button type="submit" class="btn btn-primary form-control">Crear</button>
+            <button type="submit" class="btn btn-primary form-control">Editar</button>
             &nbsp;
         </div>
     </div>
