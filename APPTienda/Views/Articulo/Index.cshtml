@@ -11,12 +11,6 @@
     <div class="col-3">
         <a asp-action="Crear" class="btn btn-primary form-control">Crear Artículo</a>
     </div>
-    <div class="col-3">
-        <a asp-action="Obtener" class="btn btn-primary form-control">Ver Por Categoría</a>
-    </div>
-    <div class="col-3">
-        <a asp-action="Obtener" class="btn btn-primary form-control">Ver Por Subcategoría</a>
-    </div>
 </div>
 
 <div>
@@ -47,6 +41,26 @@
             }
 
         </table>
+        <h2>Obtener por Categorías</h2><br />
+        <a href="http://localhost:5133/Articulo/VerPorCategoria/?id=1">filtrar por categoría tecnología</a>
+        <br />
+        <a href="http://localhost:5133/Articulo/VerPorCategoria/?id=2">filtrar por categoría farmacia</a>
+        <br />
+        <a href="http://localhost:5133/Articulo/VerPorCategoria/?id=3">filtrar por categoría hogar</a>
+        <h2>Obtener por SubCategorías</h2>
+        <br />
+        <a href="http://localhost:5133/Articulo/VerPorSubCategoria/?catId=1&subId=1">filtrar por subCategoría Computación</a>
+        <br />
+        <a href="http://localhost:5133/Articulo/VerPorSubCategoria/?catId=1&subId=2">filtrar por subcategoría telefonía</a>
+        <br />
+        <a href="http://localhost:5133/Articulo/VerPorSubCategoria/?catId=2&subId=1">filtrar por subcategoría medicamentos</a>
+        <br />
+        <a href="http://localhost:5133/Articulo/VerPorSubCategoria/?catId=3&subId=1">filtrar por subcategoría baño</a>
+        <br />
+        <h2>Obtener por inventario</h2><br />
+        <a href="http://localhost:5133/Articulo/VerPorInventario/?inventario=0">Sin elementos en el stock</a>
+        <br />
+        <a href="http://localhost:5133/Articulo/VerPorInventarioIntervalo/?x=2&y=5">Obtener artículos cuyo inventario se encuentra entre 5 y 2</a>
     }
     else
     {

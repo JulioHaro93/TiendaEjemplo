@@ -28,6 +28,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXJ0aWN1bG9cVmVyUG9yQ2F0ZWdvcmlhLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/BlueDotMx-JS/Documents/CSharp/APPTienda/APPTienda/Views/Articulo/VerPorInventario.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXJ0aWN1bG9cVmVyUG9ySW52ZW50YXJpby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/BlueDotMx-JS/Documents/CSharp/APPTienda/APPTienda/Views/Articulo/VerPorInventarioIntervalo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXJ0aWN1bG9cVmVyUG9ySW52ZW50YXJpb0ludGVydmFsby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/BlueDotMx-JS/Documents/CSharp/APPTienda/APPTienda/Views/Articulo/VerPorSubCategoria.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXJ0aWN1bG9cVmVyUG9yU3ViQ2F0ZWdvcmlhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/BlueDotMx-JS/Documents/CSharp/APPTienda/APPTienda/Views/Categoria/Crear.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhXENyZWFyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

@@ -8,6 +8,8 @@ using System.Formats.Asn1;
 using System.Linq;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 
 namespace APPTienda.Controllers
 {
@@ -56,29 +58,12 @@ namespace APPTienda.Controllers
         {
             if (ModelState.IsValid) 
             {
-                /*List<Articulo> listaArticulos = _context.Articulo.ToList();
-                var totalCategorias = listaArticulos.Count();
-
-                articulo.ArticuloNum= (uint)(totalCategorias + 1);
-                //articulo.Id_SubCategoria = (uint)(totalCategorias + 1);
-                articulo.Categoria = "1."+articulo.ArticuloNum.ToString();
-                for (int i = 0; i < totalCategorias; i++)
-                {
-                    if (listaArticulos[i].Categoria == articulo.Categoria)
-                    {
-                        articulo.ArticuloNum = listaArticulos[totalCategorias-1].Id_SubCategoria+1;
-                        //articulo.Id_SubCategoria = listaArticulos[totalCategorias-1].Id_SubCategoria + 1;
-                        articulo.Categoria = "1."+ articulo.ArticuloNum.ToString();
-                    }
-                }*/
+               
                 List<SubCategoria> listaSubCategorias = _context.SubCategoria.ToList();
                 List<Articulo> listaSub = _context.Articulo.ToList();
                 List<SubCategoria> listaSubById = _context.SubCategoria
                     .Where(t => t.Id_Categoria == articulo.Id_SubCategoria)
                     .ToList();
-
-
-                //string substring = listaSub[listaSub.Count()-1].Ticket_Num;
 
                 articulo.ArticuloNum = (uint)((int)listaSubById.Count() + 1);
                 articulo.Categoria =
@@ -145,22 +130,45 @@ namespace APPTienda.Controllers
         }
 
         [HttpGet]
-        public IActionResult VerPorCategoria(Categoria categoria)
+        public IActionResult VerPorCategoria(uint? id)
         {
+            var categoria = _context.Categoria.FirstOrDefault(a => a.Id_Categoria == id);
+
             List<Articulo> articulos = _context.Articulo.Where(a =>
                 a.Categoria.Substring(0, 3).Equals(categoria.Ticket_Num)
                 ).ToList();
             return View(articulos);
         }
 
-        public IActionResult VerPorSubCategoria(SubCategoria subCategoria)
+        public IActionResult VerPorSubCategoria(uint? catId, uint? subId)
+        {
+            string substring = "1."+ catId + "." + subId;
+            List<Articulo> articulos = _context.Articulo.Where(a =>
+                a.Categoria.Substring(0, 5).Equals(substring)
+                ).ToList();
+            
+
+            return View(articulos);
+        }
+        [HttpGet]
+        public IActionResult VerPorInventario(uint? inventario)
         {
             List<Articulo> articulos = _context.Articulo.Where(a =>
-                a.Categoria.Substring(0, 5).Equals(subCategoria.Ticket_NumSub)
-                ).ToList();
+            a.Inventario <= inventario
+            ).ToList();
+            return View(articulos);
+        }
+        [HttpGet]
+        public IActionResult VerPorInventarioIntervalo(uint? x, uint? y)
+        {
+            List<Articulo> articulos = _context.Articulo.Where(a =>
+            a.Inventario >=x && a.Inventario <=y
+            ).ToList();
             return View(articulos);
         }
     }
-
-
+    
 }
+
+
+
